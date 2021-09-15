@@ -5,8 +5,6 @@ export const getNotes = async (req, res) => {
     try {
         const notes = await NoteMessage.find();
 
-        // const noteMessages = await NoteMessage.find();
-
         res.status(200).json({ data: notes });
     } catch (error) {
         res.status(404).json({message: error.message});
@@ -15,7 +13,7 @@ export const getNotes = async (req, res) => {
 
 export const createNote = async (req, res) => {
     const note = req.body;
-    console.log(note);
+
     const newNote = new NoteMessage(note);
 
     try {

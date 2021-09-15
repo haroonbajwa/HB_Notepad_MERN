@@ -1,24 +1,20 @@
 import Header from "./components/header/Header";
-import AddNote from "./components/addNote/AddNote";
-import Notes from "./components/notes/Notes";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 
-import { Container, Grid } from '@material-ui/core';
+import Home from "./components/home/Home";
 
 function App() {
   return (
-    <>
-    <Header />
-    <Container>
-      <Grid container spacing={4} justify="center">
-        <Grid item xs={10} sm={8} md={6} lg={4}>
-          <AddNote />
-        </Grid>
-        <Grid item xs={12}>
-          <Notes />
-        </Grid>
-      </Grid>
-    </Container>
-    </>
+    <BrowserRouter>
+      <Header />
+      <Container>
+        <Switch>
+          <Route path="/" exact component={() => <Redirect to="/notes" />} />
+          <Route path="/notes" exact component={Home} />
+        </Switch>
+      </Container>
+    </BrowserRouter>
   );
 }
 
