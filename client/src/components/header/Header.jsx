@@ -1,13 +1,38 @@
-import React from 'react'
-import { AppBar, Toolbar, IconButton, Typography, InputBase } from '@material-ui/core'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Typography, InputBase, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-import useStyles from './styles'
+import { getNotesBySearch } from '../../actions/notes';
+
+import useStyles from './styles';
 
 const Header = () => {
 
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const [search, setSearch] = useState('');
+
+
+    const searchNote = () => {
+        if(search.trim()) {
+            dispatch(getNotesBySearch({ search }));
+            history.push(`/notes/search?searchQuery=${search ||'none'}`);
+        } else {
+            history.push('/');
+        }
+    }
+
+    const handleKeyPress = (e) => {
+        if(e.keyCode === 13)
+        {
+            searchNote();
+        }
+    }
 
     return (
         <div className={classes.root}>
@@ -30,12 +55,14 @@ const Header = () => {
                     </div>
                     <InputBase
                     placeholder="Search…"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
+                    classes={{ root: classes.inputRoot, input: classes.inputInput }}
                     inputProps={{ 'aria-label': 'search' }}
+                    name="search"
+                    onKeyPress={handleKeyPress}
+                    value={search}
+                    onChange = {(e) => setSearch(e.target.value)}
                     />
+                    <Button onClick={searchNote}>Search</Button>
                 </div>
             </Toolbar>
         </AppBar>

@@ -12,6 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/notes" />} />
           <Route path="/notes" exact component={Home} />
+          <Route path="/notes/search" exact component={Home} />
         </Switch>
       </Container>
     </BrowserRouter>
