@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import Note from './note/Note';
 import { getNotes } from '../../actions/notes';
 
-const Notes = () => {
+const Notes = ({ setCurrentId }) => {
 
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes);
@@ -19,7 +19,7 @@ const Notes = () => {
                 {
                     notes.map((note) => (
                         <Grid item key={note._id} xs={12} sm={6} md={4} lg={3} justify="center">
-                            <Note note={note} />
+                            <Note note={note} setCurrentId={setCurrentId} />
                         </Grid>
                         ))
                 }

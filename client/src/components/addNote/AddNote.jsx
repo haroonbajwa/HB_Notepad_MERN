@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField, TextareaAutosize, Paper, IconButton } from '@material-ui/core'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 
-import { useDispatch } from 'react-redux'
-import { createNote } from '../../actions/notes'
+import { useDispatch, useSelector } from 'react-redux'
+import { createNote, updateNote } from '../../actions/notes'
 
 import useStyles from './styles'
 
-const AddNote = () => {
+const AddNote = ({ currentId, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -16,11 +16,26 @@ const AddNote = () => {
         message: ''
     });
 
+    const note = useSelector((state) => currentId ? state.notes.find((n) => n._id === currentId) : null);
+
+    useEffect(() => {
+        if(note) setNoteData(note);
+    }, [note]);
+
     const handleSubmit = (e) => {
 
-        dispatch(createNote(noteData));
+        if(currentId) {
+            dispatch(updateNote(currentId, { ...noteData }))
+        } else {
+            dispatch(createNote(noteData));
+        }
 
-        setNoteData({title:'', message:''});
+        clear();
+    }
+
+    const clear = () => {
+        setCurrentId(null);
+        setNoteData({ title: '', message: ''});
     }
 
     return (

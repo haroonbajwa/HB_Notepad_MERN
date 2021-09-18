@@ -1,4 +1,4 @@
-import { CREATE, FETCH_ALL, FETCH_BY_SEARCH, DELETE } from '../constants/actionTypes';
+import { CREATE, FETCH_ALL, FETCH_BY_SEARCH, UPDATE, DELETE } from '../constants/actionTypes';
 
 const notes = (state = { notes: [] }, action) => {
     switch (action.type) {
@@ -14,6 +14,9 @@ const notes = (state = { notes: [] }, action) => {
 
         case FETCH_BY_SEARCH:
             return { ...state, notes: action.payload };
+
+        case UPDATE:
+            return { ...state, notes: state.notes.map( (note) => note._id === action.payload._id ? action.payload : note ) };
 
         case DELETE:
             return { ...state, notes: state.notes.filter((note) => note._id !== action.payload) };

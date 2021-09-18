@@ -40,6 +40,17 @@ export const getNotesBySearch = async (req, res) => {
     }
 }
 
+export const updateNote = async (req, res) => {
+    const { id: _id } = req.params;
+    const note = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+
+    const updatedNote = await NoteMessage.findByIdAndUpdate(_id, { ...note, _id }, { new: true });
+
+    res.json(updatedNote);
+}
+
 export const deleteNote = async (req, res) => {
     const { id } = req.params;
 

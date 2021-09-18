@@ -14,7 +14,7 @@ import { deleteNote } from '../../../actions/notes'
 import useStyles from './styles'
 
 
-const Note = ({ note }) => {
+const Note = ({ note, setCurrentId }) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Note = ({ note }) => {
                 <IconButton size="medium" color="primary" onClick={() => dispatch(deleteNote(note._id))}>
                         <DeleteIcon fontSize="medium" />
                 </IconButton>
-                <IconButton size="medium" color="primary" onClick={() => {}}>
+                <IconButton size="medium" color="primary" onClick={() => setCurrentId(note._id)}>
                         <EditIcon fontSize="medium" />
                 </IconButton>
             </div>
