@@ -15,7 +15,7 @@ const Notes = () => {
 
     return (
         <>
-            <Grid container spacing={2} justify="center">
+            <Grid container spacing={4} justify="center">
                 {
                     notes.map((note) => (
                         <Grid item key={note._id} xs={12} sm={6} md={4} lg={3} justify="center">

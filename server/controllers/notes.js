@@ -39,3 +39,14 @@ export const getNotesBySearch = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
+export const deleteNote = async (req, res) => {
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
+
+    await NoteMessage.findByIdAndRemove(id);
+
+    res.send({ message: 'Note deleted successfully' });
+
+}
