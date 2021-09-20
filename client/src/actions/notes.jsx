@@ -27,7 +27,7 @@ export const createNote = (note) => async (dispatch) => {
 export const getNotesBySearch = (searchQuery) => async(dispatch) => {
     try {
         const { data: { data } } = await api.fetchNotesBySearch(searchQuery);
-        console.log(data);
+
         dispatch( {type: FETCH_BY_SEARCH, payload: data });
     } catch (error) {
         console.log(error);

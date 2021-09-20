@@ -27,13 +27,6 @@ const Header = () => {
         }
     }
 
-    const handleKeyPress = (e) => {
-        if(e.keyCode === 13)
-        {
-            searchNote();
-        }
-    }
-
     return (
         <div className={classes.root}>
         <AppBar position="static">
@@ -58,11 +51,10 @@ const Header = () => {
                     classes={{ root: classes.inputRoot, input: classes.inputInput }}
                     inputProps={{ 'aria-label': 'search' }}
                     name="search"
-                    onKeyPress={handleKeyPress}
+                    onKeyPress={(e) => { if(e.key == 'Enter') searchNote() }}
                     value={search}
                     onChange = {(e) => setSearch(e.target.value)}
                     />
-                    <Button onClick={searchNote}>Search</Button>
                 </div>
             </Toolbar>
         </AppBar>
