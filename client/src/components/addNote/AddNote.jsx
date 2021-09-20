@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { TextField, TextareaAutosize, Paper, IconButton } from '@material-ui/core'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { createNote, updateNote } from '../../actions/notes'
@@ -51,9 +52,15 @@ const AddNote = ({ currentId, setCurrentId }) => {
                 placeholder="Type Your Note here..."
                 className={classes.messageBox}/>
             </form>
-            <IconButton color="primary" size="medium" onClick={handleSubmit} className={classes.submitButton}>
-                <AddCircleIcon fontSize="large" />
-            </IconButton>
+            <div style={{display:'block'}}>
+                <IconButton color="primary" size="medium" onClick={handleSubmit} className={classes.submitButton}>
+                    <AddCircleIcon fontSize="large" />
+                </IconButton>
+                <IconButton color="primary" size="medium" onClick={clear} className={classes.submitButton}>
+                    <ClearAllIcon fontSize="large" />
+                </IconButton>
+            </div>
+
         </Paper>
         
         </>
