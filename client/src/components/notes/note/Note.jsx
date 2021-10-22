@@ -1,7 +1,6 @@
 import React from 'react'
-import { Paper, Button, IconButton } from '@material-ui/core'
+import { Paper, IconButton } from '@material-ui/core'
 import randomColor from 'randomcolor'
-import { makeStyles } from "@material-ui/core/styles";
 
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import DeleteIcon from '@material-ui/icons/Delete'

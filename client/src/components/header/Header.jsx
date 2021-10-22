@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Typography, InputBase } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -51,7 +51,7 @@ const Header = () => {
                     classes={{ root: classes.inputRoot, input: classes.inputInput }}
                     inputProps={{ 'aria-label': 'search' }}
                     name="search"
-                    onKeyPress={(e) => { if(e.key == 'Enter') searchNote() }}
+                    onKeyPress={(e) => { if(e.key === 'Enter') searchNote() }}
                     value={search}
                     onChange = {(e) => setSearch(e.target.value)}
                     />
